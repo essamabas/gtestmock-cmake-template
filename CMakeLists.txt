@@ -42,10 +42,40 @@ file(GLOB TEST_FILES "test/*.cpp")
 file(GLOB MAIN_SRC "src/Main.cpp")
 list(REMOVE_ITEM SRC_FILES ${MAIN_SRC})
 
+#set coverage flags to gcc 
+# -ftest-coverage Create data files needed by "gcov"
+# -fprofile-arcs Insert arc-based program profiling code
+###############################################################################
+SET(CMAKE_CXX_FLAGS="-g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
+SET(CMAKE_C_FLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
+#SET(CMAKE_SHARED_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+
+# Include CodeCoverage.cmake 
+# Ref: https://github.com/bilke/cmake-modules/blob/master/CodeCoverage.cmake
+###############################################################################
+# sets module path for searching
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-modules)
+if(CMAKE_COMPILER_IS_GNUCXX)
+    include(CodeCoverage)
+    setup_target_for_coverage(${PROJECT_NAME}_coverage ${TEST_EXECUTABLE_NAME} coverage)
+endif()
+
+#set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules")
+#find_package (CodeCoverage) # runs CodeCoverage.cmake
+INCLUDE(CodeCoverage)
+#setup_target_for_coverage(
+#  my_coverage_target  # Name for custom target.
+#  ${TEST_EXECUTABLE_NAME}         # Name of the test driver executable that runs the tests.
+#  # NOTE! This should always have a ZERO as exit code
+#  # otherwise the coverage generation will not complete.
+#  coverage            # Name of output directory.
+#  )
+
 add_executable("${TEST_EXECUTABLE_NAME}" ${TEST_FILES} ${SRC_FILES})
 
 # Set link libraries (order matters)
-target_link_libraries("${TEST_EXECUTABLE_NAME}" gmock gtest pthread)
+target_link_libraries("${TEST_EXECUTABLE_NAME}" gmock gtest pthread gcov)
 
 # Include root directory
 include_directories(BEFORE ".")

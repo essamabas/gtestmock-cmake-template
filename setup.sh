@@ -5,6 +5,11 @@ LIB_DIR="lib"
 GMOCK_DIR="$LIB_DIR/$GMOCK"
 GMOCK_ZIP="${GMOCK}.zip"
 GMOCK_ZIP_URL="https://googlemock.googlecode.com/files/${GMOCK_ZIP}"
+echo ">> installing lcov ...."
+#sudo apt-get update
+#sudo apt-get install lcov
+echo ">> installing gcovr ...."
+#sudo pip install gcovr
 
 function setup_build_directory()
 {
@@ -44,6 +49,6 @@ function setup_gmock()
 
 setup_gmock
 setup_build_directory "Debug"
-setup_build_directory "Release"
+#setup_build_directory "Release"
 
 exit 0
