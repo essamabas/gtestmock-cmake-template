@@ -7,6 +7,7 @@ GMOCK_ZIP="${GMOCK}.zip"
 GMOCK_ZIP_URL="https://googlemock.googlecode.com/files/${GMOCK_ZIP}"
 
 # installing dependencies
+# to install-cmake follow the ref: http://www.claudiokuenzler.com/blog/611/installing-cmake-3.4.1-ubuntu-14.04-trusty-using-alternatives#.VuBStIUrLRY
 echo ">> installing lcov ...."
 sudo apt-get update
 sudo apt-get install lcov --assume-yes
