@@ -5,11 +5,18 @@ LIB_DIR="lib"
 GMOCK_DIR="$LIB_DIR/$GMOCK"
 GMOCK_ZIP="${GMOCK}.zip"
 GMOCK_ZIP_URL="https://googlemock.googlecode.com/files/${GMOCK_ZIP}"
+
+# installing dependencies
 echo ">> installing lcov ...."
-#sudo apt-get update
-#sudo apt-get install lcov
+sudo apt-get update
+sudo apt-get install lcov --assume-yes
+echo ">> installing lcov ...."
+sudo apt-get install cmake --assume-yes
+echo ">> installing python with pip ...."
+sudo apt-get install python --assume-yes
+sudo apt-get install python-pip --assume-yes
 echo ">> installing gcovr ...."
-#sudo pip install gcovr
+sudo pip install gcovr
 
 function setup_build_directory()
 {
