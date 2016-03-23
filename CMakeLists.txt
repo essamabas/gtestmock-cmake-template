@@ -56,7 +56,7 @@ SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 ###############################################################################
 # sets module path for searching
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-modules)
-if(CMAKE_COMPILER_IS_GNUCXX)
+if((CMAKE_COMPILER_IS_GNUCXX) OR (CMAKE_COMPILER_IS_GNUCC))
     include(CodeCoverage)
     setup_target_for_coverage(${PROJECT_NAME}_coverage ${TEST_EXECUTABLE_NAME} coverage)
 endif()
