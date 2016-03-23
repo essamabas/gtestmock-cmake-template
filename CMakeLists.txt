@@ -63,7 +63,7 @@ endif()
 
 #set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules")
 #find_package (CodeCoverage) # runs CodeCoverage.cmake
-INCLUDE(CodeCoverage)
+#INCLUDE(CodeCoverage)
 #setup_target_for_coverage(
 #  my_coverage_target  # Name for custom target.
 #  ${TEST_EXECUTABLE_NAME}         # Name of the test driver executable that runs the tests.
