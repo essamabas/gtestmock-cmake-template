@@ -14,8 +14,11 @@ add_definitions(-Wextra)
 # Google Mock & Test
 ###############################################################################
 #add_subdirectory(${GMOCK_ROOT})
-include_directories(${GMOCK_ROOT}/include)
-include_directories(${GMOCK_ROOT}/gtest/include)
+enable_testing()
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+#include_directories(${GMOCK_ROOT}/include)
+#include_directories(${GMOCK_ROOT}/gtest/include)
 
 # Main program executable
 ###############################################################################
@@ -78,7 +81,7 @@ add_executable("${TEST_EXECUTABLE_NAME}" ${TEST_FILES} ${SRC_FILES})
 # Set link libraries (order matters)
 #target_link_libraries("${TEST_EXECUTABLE_NAME}" gmock gtest pthread gcov)
 #target_link_libraries("${TEST_EXECUTABLE_NAME}" gtest gtest_main pthread gcov)
-target_link_libraries("${TEST_EXECUTABLE_NAME}" ${GMOCK_ROOT}/make/gtest_main.a pthread gcov)
+target_link_libraries("${TEST_EXECUTABLE_NAME}" ${GTEST_BOTH_LIBRARIES} pthread gcov)
 
 # Include root directory
 include_directories(BEFORE ".")
