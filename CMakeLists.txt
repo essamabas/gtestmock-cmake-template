@@ -76,7 +76,8 @@ endif()
 add_executable("${TEST_EXECUTABLE_NAME}" ${TEST_FILES} ${SRC_FILES})
 
 # Set link libraries (order matters)
-target_link_libraries("${TEST_EXECUTABLE_NAME}" gmock gtest pthread gcov)
+#target_link_libraries("${TEST_EXECUTABLE_NAME}" gmock gtest pthread gcov)
+target_link_libraries("${TEST_EXECUTABLE_NAME}" gtest gtest_main pthread gcov)
 
 # Include root directory
 include_directories(BEFORE ".")
