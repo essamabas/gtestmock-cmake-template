@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
-set(ENV{GMOCK_ROOT} lib/gmock-1.7.0)
 
 project(my_project)
 
