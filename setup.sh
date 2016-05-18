@@ -8,16 +8,21 @@ GMOCK_ZIP_URL="https://googlemock.googlecode.com/files/${GMOCK_ZIP}"
 
 # installing dependencies
 # to install-cmake follow the ref: http://www.claudiokuenzler.com/blog/611/installing-cmake-3.4.1-ubuntu-14.04-trusty-using-alternatives#.VuBStIUrLRY
-echo ">> installing lcov ...."
 sudo apt-get update
-sudo apt-get install lcov --assume-yes
+echo ">> installing gcc/g++/gdb ...."
+sudo apt-get install gcc --assume-yes
+sudo apt-get install build-essential --assume-yes
 echo ">> installing lcov ...."
+sudo apt-get install lcov --assume-yes
+echo ">> installing cmake ...."
 sudo apt-get install cmake --assume-yes
 echo ">> installing python with pip ...."
 sudo apt-get install python --assume-yes
 sudo apt-get install python-pip --assume-yes
 echo ">> installing gcovr ...."
 sudo pip install gcovr
+echo ">> installing java7 jdk ...."
+sudo apt-get install default-jdk --assume-yes
 
 function setup_build_directory()
 {
