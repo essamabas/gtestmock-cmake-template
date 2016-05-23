@@ -15,10 +15,10 @@ add_definitions(-Wextra)
 ###############################################################################
 #add_subdirectory(${GMOCK_ROOT})
 enable_testing()
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
-#include_directories(${GMOCK_ROOT}/include)
-#include_directories(${GMOCK_ROOT}/gtest/include)
+#find_package(GTest REQUIRED)
+#include_directories(${GTEST_INCLUDE_DIRS})
+include_directories(${GMOCK_ROOT}/include)
+include_directories(${GMOCK_ROOT}/gtest/include)
 
 # Main program executable
 ###############################################################################
