@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GMOCK="gmock-1.7.0"
+GMOCK="googletest-release-1.7.0"
 LIB_DIR="lib"
 GMOCK_DIR="$LIB_DIR/$GMOCK"
 GMOCK_ZIP="${GMOCK}.zip"
