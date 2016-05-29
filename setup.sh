@@ -1,7 +1,7 @@
 #!/bin/bash
 
+LIB_DIR="Tools"
 GTEST="googletest-release-1.7.0"
-LIB_DIR="lib"
 GTEST_DIR="$LIB_DIR/$GTEST"
 GTEST_LIBRARIES="$LIB_DIR/$GTEST/make"
 GTEST_ZIP="${GTEST}.zip"

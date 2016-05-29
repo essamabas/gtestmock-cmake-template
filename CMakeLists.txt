@@ -22,7 +22,7 @@ include_directories(${GTEST_ROOT}/include)
 
 # Main program executable
 ###############################################################################
-set(EXECUTABLE_NAME "program")
+set(EXECUTABLE_NAME ${PROJECT_NAME})
 
 # Source files
 file(GLOB SRC_FILES "src/*.cpp")
@@ -50,20 +50,24 @@ list(REMOVE_ITEM SRC_FILES ${MAIN_SRC})
 # -ftest-coverage Create data files needed by "gcov"
 # -fprofile-arcs Insert arc-based program profiling code
 ###############################################################################
-SET(CMAKE_CXX_FLAGS="-g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
-SET(CMAKE_C_FLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
+#SET(CMAKE_CXX_FLAGS="-g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
+#SET(CMAKE_C_FLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
 #SET(CMAKE_SHARED_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
-SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+#SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+SET(CMAKE_EXE_LINKER_FLAGS
+    "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
 
 # Include CodeCoverage.cmake 
 # Ref: https://github.com/bilke/cmake-modules/blob/master/CodeCoverage.cmake
 ###############################################################################
 # sets module path for searching
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-modules)
-if((CMAKE_COMPILER_IS_GNUCXX) OR (CMAKE_COMPILER_IS_GNUCC))
+#if((CMAKE_COMPILER_IS_GNUCXX) OR (CMAKE_COMPILER_IS_GNUCC))
     include(CodeCoverage)
-    setup_target_for_coverage(${PROJECT_NAME}_coverage ${TEST_EXECUTABLE_NAME} coverage)
-endif()
+    setup_target_for_coverage(${TEST_EXECUTABLE_NAME}_coverage ${TEST_EXECUTABLE_NAME} gcov)
+#endif()
 
 
 add_executable("${TEST_EXECUTABLE_NAME}" ${TEST_FILES} ${SRC_FILES})
