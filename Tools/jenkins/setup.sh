@@ -1,5 +1,8 @@
 #!/bin/bash
+
 echo ">> navigating to parent-directory ..."
+#keep admin mode active
+#sudo -s -H
 cd ..
 cd ..
 echo ">> preparing build directory ..."
@@ -32,7 +35,10 @@ function setup_build_directory()
         echo ">> error running cmake!"
         exit 1
     fi
+    sudo make clean
+    sudo make all    
     cd ..
+    
 }
 
 function setup_gtest()

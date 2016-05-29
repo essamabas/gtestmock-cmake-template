@@ -1,8 +1,7 @@
+
 #include "gtest/gtest.h"
 
-double SquareRoot (double x){
-	return 0;
-}
+#include "SquareRoot.c"
 
 TEST (SquareRootTests, PositiveNos) {
     EXPECT_EQ (18.0, SquareRoot(324.0));

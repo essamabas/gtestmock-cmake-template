@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
-project(my_project)
+project(program)
 
 # General
 ###############################################################################
@@ -50,14 +50,14 @@ list(REMOVE_ITEM SRC_FILES ${MAIN_SRC})
 # -ftest-coverage Create data files needed by "gcov"
 # -fprofile-arcs Insert arc-based program profiling code
 ###############################################################################
-#SET(CMAKE_CXX_FLAGS="-g -O0 -Wall -W -Wshadow -Wunused-variable -Wunused-parameter -Wunused-function -Wunused -Wno-system-headers -Wno-deprecated -Woverloaded-virtual -Wwrite-strings -fprofile-arcs -ftest-coverage")
-#SET(CMAKE_C_FLAGS="-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
-#SET(CMAKE_SHARED_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
-#SET(CMAKE_EXE_LINKER_FLAGS="-fprofile-arcs -ftest-coverage")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fprofile-arcs -ftest-coverage")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
 SET(CMAKE_EXE_LINKER_FLAGS
     "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -ftest-coverage")
+
+# sets module path for searching
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-modules)
+
 
 # Include CodeCoverage.cmake 
 # Ref: https://github.com/bilke/cmake-modules/blob/master/CodeCoverage.cmake
@@ -83,5 +83,7 @@ include_directories(BEFORE "src/")
 # Include CppCheck.cmake 
 # Ref: https://github.com/rpavlik/cmake-modules/blob/master/CppcheckTargets.cmake
 ###############################################################################
+include(Findcppcheck)
 include(CppcheckTargets)
+add_cppcheck(${TEST_EXECUTABLE_NAME})
 add_cppcheck_sources(${TEST_EXECUTABLE_NAME}_check)

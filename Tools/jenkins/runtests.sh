@@ -1,9 +1,8 @@
-echo ">> compiling application ..."
+#!/bin/bash
+
 cd ..
 cd ..
 cd debug
-make clean
-make all
 echo ">> run compiled application ..."
 if [ $# -eq 0 ]
   then
