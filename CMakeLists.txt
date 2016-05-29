@@ -64,11 +64,10 @@ SET(CMAKE_EXE_LINKER_FLAGS
 ###############################################################################
 # sets module path for searching
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake-modules)
-#if((CMAKE_COMPILER_IS_GNUCXX) OR (CMAKE_COMPILER_IS_GNUCC))
+if((CMAKE_COMPILER_IS_GNUCXX) OR (CMAKE_COMPILER_IS_GNUCC))
     include(CodeCoverage)
     setup_target_for_coverage(${TEST_EXECUTABLE_NAME}_coverage ${TEST_EXECUTABLE_NAME} gcov)
-#endif()
-
+endif()
 
 add_executable("${TEST_EXECUTABLE_NAME}" ${TEST_FILES} ${SRC_FILES})
 
@@ -81,3 +80,8 @@ target_link_libraries("${TEST_EXECUTABLE_NAME}" gtest_main pthread gcov)
 include_directories(BEFORE ".")
 include_directories(BEFORE "src/")
 
+# Include CppCheck.cmake 
+# Ref: https://github.com/rpavlik/cmake-modules/blob/master/CppcheckTargets.cmake
+###############################################################################
+include(CppcheckTargets)
+add_cppcheck_sources(${TEST_EXECUTABLE_NAME}_check)

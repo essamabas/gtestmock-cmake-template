@@ -14,6 +14,8 @@ sudo apt-get install gcc --assume-yes
 sudo apt-get install build-essential --assume-yes
 echo ">> installing lcov ...."
 sudo apt-get install lcov --assume-yes
+echo ">> installing cpp-check ...."
+sudo apt-get install cppcheck --assume-yes
 echo ">> installing cmake ...."
 sudo apt-get install cmake --assume-yes
 echo ">> installing python with pip ...."

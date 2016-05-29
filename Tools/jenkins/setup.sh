@@ -17,12 +17,13 @@ function setup_build_directory()
 {
     build_name=$1
     dir_name=$(echo $build_name | tr '[:upper:]' '[:lower:]')
+    sudo rm -r "$dir_name" 
     if [ ! -d "$dir_name" ]; then
         echo ">> creating $dir_name directory..."
         mkdir $dir_name
-        echo ">> copying gcovr to $dir_name directory..."
-        cp "$LIB_DIR/gcovr" "$dir_name/gcovr"
     fi
+    echo ">> copying gcovr to $dir_name directory..."
+    cp "$LIB_DIR/gcovr" "$dir_name/gcovr"    
     echo ">> running cmake in ${dir_name}..."
     cd $dir_name 
     if ! cmake .. -DCMAKE_BUILD_TYPE=$build_name \
