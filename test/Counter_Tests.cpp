@@ -5,9 +5,8 @@
  *      Author:
  */
 
-#include <gtest/gtest.h>
-
-#include "../src/Counter.hpp"
+#include "gtest/gtest.h"
+#include "Counter.hpp"
 
 TEST(Counter, Increment) {
       Counter c;

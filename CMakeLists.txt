@@ -11,14 +11,14 @@ add_definitions(-std=c++0x)
 # Extra warnings
 add_definitions(-Wextra)
 
-# Google Mock & Test
+# Google Test
 ###############################################################################
-#add_subdirectory(${GMOCK_ROOT})
+add_subdirectory(${GTEST_ROOT})
 enable_testing()
 #find_package(GTest REQUIRED)
 #include_directories(${GTEST_INCLUDE_DIRS})
-include_directories(${GMOCK_ROOT}/include)
-include_directories(${GMOCK_ROOT}/gtest/include)
+#include_directories(${GTEST_ROOT}/gtest/include)
+include_directories(${GTEST_ROOT}/include)
 
 # Main program executable
 ###############################################################################
@@ -65,23 +65,13 @@ if((CMAKE_COMPILER_IS_GNUCXX) OR (CMAKE_COMPILER_IS_GNUCC))
     setup_target_for_coverage(${PROJECT_NAME}_coverage ${TEST_EXECUTABLE_NAME} coverage)
 endif()
 
-#set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules")
-#find_package (CodeCoverage) # runs CodeCoverage.cmake
-#INCLUDE(CodeCoverage)
-#setup_target_for_coverage(
-#  my_coverage_target  # Name for custom target.
-#  ${TEST_EXECUTABLE_NAME}         # Name of the test driver executable that runs the tests.
-#  # NOTE! This should always have a ZERO as exit code
-#  # otherwise the coverage generation will not complete.
-#  coverage            # Name of output directory.
-#  )
 
 add_executable("${TEST_EXECUTABLE_NAME}" ${TEST_FILES} ${SRC_FILES})
 
 # Set link libraries (order matters)
-#target_link_libraries("${TEST_EXECUTABLE_NAME}" gmock gtest pthread gcov)
-#target_link_libraries("${TEST_EXECUTABLE_NAME}" gtest gtest_main pthread gcov)
-target_link_libraries("${TEST_EXECUTABLE_NAME}" ${GTEST_BOTH_LIBRARIES} pthread gcov)
+target_link_libraries("${TEST_EXECUTABLE_NAME}" gtest_main pthread gcov)
+#target_link_libraries("${TEST_EXECUTABLE_NAME}" ${GTEST_LIBRARIES}/gtest_main.a pthread gcov)
+#target_link_libraries(runTests ${GTEST_BOTH_LIBRARIES} pthread gcov)
 
 # Include root directory
 include_directories(BEFORE ".")

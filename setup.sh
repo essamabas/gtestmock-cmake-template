@@ -1,10 +1,11 @@
 #!/bin/bash
 
-GMOCK="googletest-release-1.7.0"
+GTEST="googletest-release-1.7.0"
 LIB_DIR="lib"
-GMOCK_DIR="$LIB_DIR/$GMOCK"
-GMOCK_ZIP="${GMOCK}.zip"
-GMOCK_ZIP_URL="https://googlemock.googlecode.com/files/${GMOCK_ZIP}"
+GTEST_DIR="$LIB_DIR/$GTEST"
+GTEST_LIBRARIES="$LIB_DIR/$GTEST/make"
+GTEST_ZIP="${GTEST}.zip"
+GTEST_ZIP_URL="https://googlemock.googlecode.com/files/${GTEST_ZIP}"
 
 # installing dependencies
 # call install.sh
@@ -20,24 +21,25 @@ function setup_build_directory()
     echo ">> running cmake in ${dir_name}..."
     cd $dir_name 
     if ! cmake .. -DCMAKE_BUILD_TYPE=$build_name \
-                  -DGMOCK_ROOT=$GMOCK_DIR > /dev/null; then
+                  -DGTEST_ROOT=$GTEST_DIR \
+                  -DGTEST_LIBRARIES=$GTEST_LIBRARIES > /dev/null; then
         echo ">> error running cmake!"
         exit 1
     fi
     cd ..
 }
 
-function setup_gmock()
+function setup_gtest()
 {
-    if [ ! -d "$GMOCK_DIR" ]; then
-        echo ">> downloading gmock..."
+    if [ ! -d "$GTEST_DIR" ]; then
+        echo ">> downloading GTEST..."
         cd "$LIB_DIR"
-        if ! wget $GMOCK_ZIP_URL > /dev/null; then
+        if ! wget $GTEST_ZIP_URL > /dev/null; then
             echo ">> error running wget!"
             exit 1
         fi
         echo ">> uncompressing zip..."
-        if ! unzip $GMOCK_ZIP > /dev/null; then
+        if ! unzip $GTEST_ZIP > /dev/null; then
             echo ">> error running unzip!"
             exit 1
         fi
@@ -45,7 +47,7 @@ function setup_gmock()
     fi
 }
 
-setup_gmock
+setup_gtest
 setup_build_directory "Debug"
 #setup_build_directory "Release"
 
