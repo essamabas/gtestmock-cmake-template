@@ -8,7 +8,7 @@
 #include "gtest/gtest.h"
 #include "Counter.hpp"
 
-TEST(Counter, Increment) {
+TEST(CounterTests, Increment) {
       Counter c;
       EXPECT_EQ(0, c.Increment());
       EXPECT_EQ(1, c.Increment());

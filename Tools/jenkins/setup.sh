@@ -1,5 +1,8 @@
 #!/bin/bash
-
+echo ">> navigating to parent-directory ..."
+cd ..
+cd ..
+echo ">> preparing build directory ..."
 LIB_DIR="Tools"
 GTEST="googletest-release-1.7.0"
 GTEST_DIR="$LIB_DIR/$GTEST"
