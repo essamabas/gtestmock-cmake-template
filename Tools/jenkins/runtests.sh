@@ -7,10 +7,10 @@ echo ">> run compiled application ..."
 if [ $# -eq 0 ]
   then
     echo "No filter-arguments supplied for gtest"
-    sudo ./tests --gtest_output=xml:coverage.junit.xml
+    sudo ./tests --gtest_output=xml:tests.junit.xml
   else
     echo "No filter-arguments supplied for gtest"
-    sudo ./tests --gtest_output=xml:coverage.junit.xml --gtest_filter=$1
+    sudo ./tests --gtest_output=xml:tests.junit.xml --gtest_filter=$1
 fi
 echo ">> generating coverage report ..."
 #python gcovr -x -r .. -f".*src\\.*" > coverage.xml2
