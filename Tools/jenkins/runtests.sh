@@ -16,7 +16,7 @@ fi
 echo ">> generating coverage report ..."
 #python gcovr -x -r .. -f".*src\\.*" > coverage.xml2
 #python gcovr -x -r .. -e".+\.test\.cpp" > coverage.xml
-python gcovr -x -r .. -e".test\*" > coverage.xml
+python gcovr -x -r .. -e"test/*" -e"Tools/*"> coverage.xml
 #
 echo ">> running cpp-check on src ..."
 #python gcovr -x -r .. -f".*src\\.*" > coverage.xml2
