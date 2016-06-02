@@ -4,4 +4,7 @@ Basic template for C++ development using Google [Test](http://code.google.com/p/
 
 ## Usage
 1. Clone this repository with `git clone git://github.com/davidag/gtestmock-cmake-template.git myproject`
-2. Run `setup.sh` to download and install Google Test/Mock and setup debug/release directories. 
+# Ubuntu
+2. Run `install.sh` to download and install dependencies for Ubuntu. 
+2. Run `Tools/jenkins/setup.sh` to download and install Google Test/Mock and setup debug/release directories. 
+3. Run `Tools/jenkins/runtests.sh` to 

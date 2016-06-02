@@ -15,6 +15,10 @@ fi
 echo ">> generating coverage report ..."
 #python gcovr -x -r .. -f".*src\\.*" > coverage.xml2
 python gcovr -x -r .. -e".+\.test\.cpp" > coverage.xml
+#
+echo ">> running cpp-check on src ..."
+#python gcovr -x -r .. -f".*src\\.*" > coverage.xml2
+sudo cppcheck --enable=all --inconclusive --xml --xml-version=2 ../src > cppcheck.xml
 echo ">> moving files to build-number Report .."
 #kdir ..\..\builds\%BUILD_NUMBER%\workspace-files
 #opy *.xml ..\..\builds\%BUILD_NUMBER%\workspace-files\*.xml
